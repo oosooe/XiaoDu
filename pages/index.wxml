@@ -1,0 +1,206 @@
+<form report-submit bindsubmit="vPushFormId">
+  <ui-nav-bar slot="nav-bar" custom-style="{{ {backgroundColor:'#fff'} }}" _pid="{{_pid}}">
+    <view class="ui-row" style="height:46px;">
+      <view data-show="{{ headtap }}" bindtap="openPopup" class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;flex:0 0 110px;">
+        <view class="ui-col-content align-left valign-middle">
+          <view class="date-header">
+            <text>{{date}}</text>{{month}}.{{year}}
+            <span type="slide_down" size="9" color="#333" class="ui-icon icon-slide_down" style="color: #333;font-size: 9px;"></span>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="">
+        <view class="ui-col-content align-center valign-middle">
+          <view class="header-ui-tabs">
+            <ui-tabs width="200" probe="1" tab-style="{{tabStyle}}" auto-width="{{false}}" index="{{ current }}" bindchange="handleChange" active-tab-style="{{activeTabStyle2}}" _pid="{{_pid}}">
+              <ui-tab _pid="{{_pid}}">乐</ui-tab>
+              <ui-tab _pid="{{_pid}}">句</ui-tab>
+              <ui-tab _pid="{{_pid}}">文</ui-tab>
+            </ui-tabs>
+          </view>
+        </view>
+      </view>
+      <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 110px;">
+        <view class="ui-col-content align-center valign-middle">
+        </view>
+      </view>
+    </view>
+  </ui-nav-bar>
+  <view style="height:{{NAV_HEIGHT}}px"></view>
+  <swiper style="height:{{WIN_HEIGHT-NAV_HEIGHT}}px" class="content" duration="400" circular="true" current="{{ current }}" bindchange="handleContentChange">
+    <swiper-item>
+      <view class="ui-row" style="margin-bottom: 20px;margin-top: 10px;height:310px;">
+        <view class="ui-col ui-col-align-center align-center valign-middle" style="padding-left: 10px; padding-right: 10px;">
+          <view class="ui-col-content align-center valign-middle">
+            <view class="content-music">
+              <image class="{{muiscImgPlayer}}" src="{{rsongImg}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="music-box ui-row" style="margin-bottom: 50px;height:70px;">
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 20px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="music-title">{{dsongImg.title}}</view>
+            <view class="music-singer">{{dsongImg.singer}}</view>
+          </view>
+        </view>
+        <view class="music-ui-col ui-col ui-col-align-right align-right valign-middle" wx:if="{{!musicPlay}}" bindtap="playerMusic" data-id="1" style="padding-right: 10px;flex:0 0 80px;">
+          <view class="ui-col-content align-right valign-middle">
+            <span type="playmusic" size="50" color="#333" class="ui-icon icon-playmusic" style="color: #333;font-size: 50px;"></span>
+          </view>
+        </view>
+        <view class="music-ui-col ui-col ui-col-align-right align-right valign-middle" wx:if="{{musicPlay}}" bindtap="playerMusic" data-id="2" style="padding-right: 10px;flex:0 0 80px;">
+          <view class="ui-col-content align-right valign-middle">
+            <span type="pausemusic" size="50" color="#333" class="ui-icon icon-pausemusic" style="color: #333;font-size: 50px;"></span>
+          </view>
+        </view>
+      </view>
+      <view class="share-ui-row ui-row" style="">
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="share-content-box">
+              <image src="../images/ic_share.png" />
+              <button open-type="share" hover-class="none" data-id="1"></button>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="share-content-box" bindtap="getShareSongTap">
+              <image src="../images/ic_image.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="ui-row" style="margin-bottom: 50px;margin-top: 10px;height:400px;">
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 40px;padding-right: 40px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="content-sentence">
+              <view class="sentence-info">
+                <text>{{dsentenc.body}}</text>
+              </view>
+              <view wx:if="{{dsentenc.title}}" class="sentence-book">《{{dsentenc.title}}》</view>
+              <view wx:if="{{dsentenc.author}}" class="sentence-user">
+                <text class="a"></text>
+                <text class="b">{{dsentenc.author}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="share-ui-row ui-row" style="">
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="share-content-box">
+              <image src="../images/ic_share.png" />
+              <button open-type="share" hover-class="none" data-id="2"></button>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="share-content-box" bindtap="getShareSentencTap">
+              <image src="../images/ic_image.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="content-topics">
+        <image src="{{darticle.image}}" mode="aspectFill" />
+        <view class="topics-title">{{darticle.title}}</view>
+        <view class="topice-user">{{darticle.author}}</view>
+        <view class="topice-voice" wx:if="{{voiceSong}}">
+          <text>为您朗读 </text>
+          <audio src="{{voiceSong}}" id="myAudio" controls="false" style="display:none"></audio>
+          <span wx:if="{{!audioPlay}}" type="playmusic" size="36" color="#333" bindtap="audioPlay" class="ui-icon icon-playmusic" style="color: #333;font-size: 36px;"></span>
+          <span wx:if="{{audioPlay}}" type="pausemusic" size="36" color="#333" bindtap="pausePlay" class="ui-icon icon-pausemusic" style="color: #333;font-size: 36px;"></span>
+        </view>
+        <view class="topice-text">
+          <text>{{darticle.body}}</text>
+        </view>
+      </view>
+      <view class="share-ui-row ui-row" style="">
+        <view class="ui-col ui-col-align-right align-right valign-middle" style="padding-right: 10px;">
+          <view class="ui-col-content align-right valign-middle">
+            <view class="share-content-box">
+              <image src="../images/ic_share.png" />
+              <button open-type="share" hover-class="none" data-id="3"></button>
+            </view>
+          </view>
+        </view>
+        <view class="ui-col ui-col-align-left align-left valign-middle" style="padding-left: 10px;">
+          <view class="ui-col-content align-left valign-middle">
+            <view class="share-content-box" bindtap="getShareArticle">
+              <image src="../images/ic_image.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+  <ui-popup show="{{ show }}" top="{{ NAV_HEIGHT }}" mask-style="{{ maskStyle}}" position="left" _pid="{{_pid}}">
+    <view class="popup-content" style="width:100vw;height:{{WIN_HEIGHT-NAV_HEIGHT}}px;">
+      <view class="ui-row" style="">
+        <view class="ui-col ui-col-3" style="flex: 0 0 25%;">
+          <view class="ui-col-content">
+            <ui-v-tabs height="{{WIN_HEIGHT-NAV_HEIGHT}}" tab-style="{{poptabStyle}}" active-tab-style="{{popactiveTabStyle}}" class="time-tabs" index="{{ tabcurrent }}" data-key="current" bindchange="handleChangeTap" _pid="{{_pid}}">
+              <ui-v-tab wx:for="{{ poptabItems }}" wx:key="id" bindtap="getMonthTap" data-year="{{item.year}}" data-month="{{item.month}}" _pid="{{_pid}}">
+                {{ item.name }}
+              </ui-v-tab>
+            </ui-v-tabs>
+          </view>
+        </view>
+        <view class="ui-col" style="">
+          <view class="ui-col-content">
+            <scroll-view scroll-y style="height:{{WIN_HEIGHT-NAV_HEIGHT}}px" class="popup-scroll-view">
+              <view class="month-box">
+                <view class="month-list-box" wx:for="{{dateArr}}" wx:key="id">
+                  <view class="month-list {{tid == item.MonNums ? 'active':''}}" bindtap="getArticleTap" data-id="{{item.MonNums}}" data-year="{{item.YearNum}}" data-date="{{item.dateNum}}" data-month="{{item.MonName}}">
+                    <view class="month-year">{{item.MonName}}.{{item.YearNum}}</view>
+                    <view class="month-day">{{item.dateNum}}</view>
+                    <view class="month-line">
+                      <text></text>
+                      <text></text>
+                      <text></text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </ui-popup>
+  <ui-mask show="{{showMask}}" custom-style="{{ customStyle }}" _pid="{{_pid}}">
+    <view class="info-content-box">
+      <view class="info-header">
+        <image src="../images/logo_share.png" />
+        <view class="info-header-title">小独</view>
+        <view class="info-header-text">v1.0.0 Lite</view>
+      </view>
+      <view class="info-content">
+        <view class="info-text info-buttom">本小程序仅供技术学习及交流使用，无任何盈利目的，最终版权归属于娱公互动，如侵犯到您的权益，请及时与我联系。</view>
+        <view class="info-text">特别鸣谢：</view>
+        <view class="info-text-left">1、小独（数据来源）</view>
+        <view class="info-text-left">2、Akeyn（语音合成)</view>
+        <view class="info-text-left">3、TouchUI（前端框架)</view>
+        <view class="info-user" bindtap="getCopyWechat">
+          联系作者：
+          <text class="a">Apollo&丸子君</text>
+          <text class="b">(点击复制微信号)</text>
+        </view>
+      </view>
+    </view>
+  </ui-mask>
+  <view class="keInfo-box">
+    <span class="keInfo ui-icon icon-info" type="info" size="28" color="#bbb" data-show="{{ true }}" bindtap="handleShowMask" style="color: #bbb;font-size: 28px;">
+    </span>
+  </view>
+  <canvas canvas-id="shareCanvas" style="width:400px;height:800px;opacity:0;position:fixed;left:-1000px;top:-1000px;"></canvas>
+</form>

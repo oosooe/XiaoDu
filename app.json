@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#efefef",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "小独Lite",
+    "navigationBarTextStyle": "black"
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
+  "theme": {
+    "theme-color": "#333333"
+  }
+}
